@@ -12,5 +12,5 @@ def saca(conta, valor):
 
 
 def extrato(conta):
-    print(f"O saldo é {conta["Saldo"]}")
+    print(f"O saldo é {conta["saldo"]}")
 
