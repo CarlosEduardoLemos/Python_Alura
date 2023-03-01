@@ -1,2 +1,4 @@
 class ContaCorrente:
-    pass
+    def __init__(self):
+        print(f"Construindo objeto ... {self}")
+        
