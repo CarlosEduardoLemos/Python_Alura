@@ -1,59 +1,42 @@
-class ContaCorrente:
-    def __init__(self, numero, titular, saldo, limite):
-        print(f"Construindo objeto ... {self}")
-        self.__numero = numero
-        self.__titular = titular
-        self.__saldo = saldo
-        self.__limite = limite
-
-
-    def extrato(self):
-        print(f"Saldo {self.__saldo} do titular {self.__titular}")
-
-
-    def deposita(self, valor):
-        self.__saldo += valor
-
-
-    def __pode_sacar(self, valor_a_sacar):
-        valor_disponivel_a_sacar = self.__saldo - self.__limite
-        return valor_a_sacar <= valor_disponivel_a_sacar
-
-
-    def saca(self, valor):
-        if(__pode_sacar[valor]):
-            self.__saldo -= valor
-        else:
-            print(f"O valor {valor} passou do limite")
-
-
-    def trasnfere(self, valor, destino):
-        self.saca(valor)
-        destino.deposita(valor)
-
+class Programa:
+    def __init__(self, nome, ano):
+        self._nome = nome.title()
+        self.ano = ano
+        self._likes = 0
 
     @property
-    def saldo(self):
-        return self.__saldo
+    def likes(self):
+        return self._likes
 
+    def dar_likes(self):
+        self._likes += 1
 
     @property
-    def titular(self):
-        return self.__titular
+    def nome(self):
+        return self._nome
 
-    
-    @property
-    def limite(self):
-        return self.__limite
-    
+    @nome.setter
+    def nome(self, nome):
+        self._nome = nome
 
-    @limite.setter
-    def limite(self, limite):
-        self.__limite = limite
+class Filme(Programa):
+    def __init__(self, nome, ano, duracao):
+        super().__init__(nome, ano)
+        self.duracao = duracao
 
-    
-    @staticmethod
-    def codigo_banco():
-        return "001"
+class Serie(Programa):
+    def __init__(self, nome, ano, temporadas):
+        super().__init__(nome, ano)
+        self.temporadas = temporadas
 
-    
+vingadores = Filme('vingadores - guerra infinita', 2018, 160)
+atlanta = Serie('atlanta', 2018, 2)
+vingadores.dar_likes()
+vingadores.dar_likes()
+vingadores.dar_likes()
+
+atlanta.dar_likes()
+atlanta.dar_likes()
+
+print(f'Nome: {vingadores.nome} - Likes: {vingadores.likes}')
+print(f'Nome: {atlanta.nome} - Likes: {atlanta.likes}')
