@@ -1,65 +1,86 @@
-class Filme:
+class Programa:
+    def __init__(self, nome, ano):
+        self._nome = nome.title()
+        self.ano = ano
+        self._likes = 0
+
+
+    @property
+    def likes(self):
+        return self._likes
+
+
+    def dar_likes(self):
+        self._likes += 1
+
+
+    @property
+    def nome(self):
+        return self._nome
+
+
+    @nome.setter
+    def nome(self, nome):
+        self._nome = nome
+
+
+    def __str__(self):
+        return f'Nome: {self.nome} Likes: {self.likes}'
+
+
+class Filme(Programa):
     def __init__(self, nome, ano, duracao):
-        self.__nome = nome.title()
-        self.ano = ano
+        super().__init__(nome, ano)
         self.duracao = duracao
-        self.__likes = 0
 
 
-    @property
-    def likes(self):
-        return self.__likes
+    def __str__(self):
+        return f'Nome: {self.nome} - {self.duracao} min - Likes: {self.likes}'
 
 
-    def dar_like(self):
-        self.__likes += 1
-    
-
-    @property
-    def nome(self):
-        return self.__nome
-
-    
-    @nome.setter
-    def nome(self, novo_nome):
-        self.__nome = novo_nome.title()
-
-
-class Series:
+class Serie(Programa):
     def __init__(self, nome, ano, temporadas):
-        self.__nome = nome.title()
-        self.ano = ano
+        super().__init__(nome, ano)
         self.temporadas = temporadas
-        self.__likes = 0
 
 
-    @property
-    def likes(self):
-        return self.__likes    
+    def __str__(self):
+        return f'Nome: {self.nome} - {self.temporadas} temporadas - Likes: {self.likes}'
 
 
-    def dar_like(self):
-        self.likes += 1
+class Playlist():
+    def __init__(self, nome, programas):
+        self.nome = nome
+        self._programas = programas
 
 
+    def __getitem__(self, item)
+        return self._programas[item]
 
-    @property
-    def nome(self):
-        return self.__nome
 
-    
-    @nome.setter
-    def nome(self, novo_nome):
-        self.__nome = novo_nome.title()
-    
+    def __len__(self):
+        return len(self._programas)
 
-    
-vingadores = Filme('Vingadores: Guerra infinita', 2018, 160)
-vingadores.dar_like()
-print(f'Nome: {vingadores.nome} - Ano: {vingadores.ano} - duração: {vingadores.duracao} - Likes: {vingadores.likes}')
 
-atlanta = Series('Atlanta', 2018, 2)
-atlanta.dar_like()
-atlanta.dar_like()
-print(f'Nome: {atlanta.nome} - Ano: {atlanta.ano} - Temporadas: {atlanta.temporadas} - Likes: {atlanta.likes}')
+vingadores = Filme('vingadores - guerra infinita', 2018, 160)
+atlanta = Serie('atlanta', 2018, 2)
+tmep = Filme('todo mundo em panico', 1999, 100)
+demolidor = Serie('demolidor', 2016, 2)
 
+vingadores.dar_likes()
+vingadores.dar_likes()
+vingadores.dar_likes()
+atlanta.dar_likes()
+atlanta.dar_likes()
+tmep.dar_likes()
+tmep.dar_likes()
+demolidor.dar_likes()
+demolidor.dar_likes()
+
+listinha = [atlanta, vingadores, demolidor, tmep]
+minha_playlist = Playlist('fim de semana', listinha)
+
+for programa in minha_playlist:
+    print(programa)
+
+print(f'Tamanho: {len(minha_playlist.listagem)}')
