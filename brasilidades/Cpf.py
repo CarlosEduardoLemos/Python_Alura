@@ -1,3 +1,5 @@
+from validate_docbr import CPF
+
 class Cpf:
     def __init__(self, documento):
         documento = str(documento)
@@ -13,9 +15,10 @@ class Cpf:
 
     def cpf_eh_Valido(self, documento):
         if len(documento) ==11:
-            return True
+            validador = CPF()
+            return validador.validate(cpf)
         else:
-            return False
+            raise ValueError("Quantidade de digitos invalida!!")
         
     
     def format_cpf(self):
