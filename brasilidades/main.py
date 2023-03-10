@@ -1,6 +1,5 @@
-from Cpf import Cpf
+from cpf import Cpf
 
-cpf = 15616987913
-objeto_cpf = Cpf(cpf)
+cpf_um = Cpf("15316264754")
 
-print(objeto_cpf)
+print(cpf_um)
